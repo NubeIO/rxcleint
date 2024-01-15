@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/NubeIO/rxcleint"
+	"github.com/NubeIO/rxclient"
 )
 
 func main() {
-	c, err := rxcleint.New()
+	c, err := rxclient.New()
 	fmt.Println(err)
 	resp := c.IPValidation("162")
 	fmt.Printf("%+v\n", resp)

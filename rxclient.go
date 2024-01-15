@@ -1,4 +1,4 @@
-package rxcleint
+package rxclient
 
 import (
 	"fmt"

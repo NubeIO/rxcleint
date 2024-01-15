@@ -1,4 +1,4 @@
-module github.com/NubeIO/rxcleint
+module github.com/NubeIO/rxclient
 
 go 1.21.5
 

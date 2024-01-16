@@ -1,2 +1,4 @@
+github.com/0x19/gotostruct v0.0.0-20150115183910-121332949fb5 h1:7zUR0c7cX8wyiftnGINAmEkUzm7b4Y082mHUBqfp/6g=
+github.com/0x19/gotostruct v0.0.0-20150115183910-121332949fb5/go.mod h1:vognKwTdxRM4vrZJnWY8lYrVtBlwGRnVAcyGMC/iBYY=
 github.com/NubeIO/unixclient v0.0.2 h1:+cMRms1ExD8N+vCS7rt9OQrjSH181Sf3VaOziIX32JY=
 github.com/NubeIO/unixclient v0.0.2/go.mod h1:KJJhz0UZDExucX91IITHYtgbLci6K1aBD0MCmtRlv08=

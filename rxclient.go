@@ -1,12 +1,18 @@
 package rxclient
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/NubeIO/unixclient"
+	"os"
 )
 
 type RxClient interface {
 	IPValidation(string) *ValidationResponse
+	UserAll() ([]*User, error)
+	RunCommand(body *CommandBody) (*Response, error)
+	SystemdStatus(uint string, timeout int) (*StatusResp, error)
+	SystemdCommand(uint string, commandType SystemCTLCommand, timeout int) (*Response, error)
 }
 
 type rxClient struct {
@@ -24,10 +30,10 @@ func New() (RxClient, error) {
 func (c *rxClient) IPValidation(ip string) *ValidationResponse {
 	validationResponse := &ValidationResponse{}
 	_, err := c.rx.Send("validation/ip", ip, 5, &validationResponse, "any")
-	return errorResp(validationResponse, err)
+	return errorValidationResponse(validationResponse, err)
 }
 
-func errorResp(resp *ValidationResponse, err error) *ValidationResponse {
+func errorValidationResponse(resp *ValidationResponse, err error) *ValidationResponse {
 	if resp == nil {
 		resp = &ValidationResponse{}
 		resp.ErrorMessage = fmt.Sprintf("reponse was empty")
@@ -47,4 +53,20 @@ type ValidationResponse struct {
 	Advice       string `json:"advice,omitempty"` // eg; an exiting entry already contains filed ""
 	ErrorMessage string `json:"error,omitempty"`
 	IsError      bool   `json:"isError"`
+}
+
+func Print(i interface{}) {
+	fmt.Printf("%+v\n", i)
+	return
+}
+
+func Log(i interface{}) string {
+	return fmt.Sprintf("%+v\n", i)
+}
+
+func PrintJOSN(x interface{}) {
+	ioWriter := os.Stdout
+	w := json.NewEncoder(ioWriter)
+	w.SetIndent("", "    ")
+	w.Encode(x)
 }
